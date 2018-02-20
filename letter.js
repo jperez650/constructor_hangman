@@ -5,18 +5,22 @@ function Letter(character){
 	this.guessedCorrect = false;
 	//show the letter if guessed/ hide if not
 	this.changeChar = function(){
-		if(guessedCorrect === true){
+		if(this.guessedCorrect === true){
 			return this.character
 		}else{
 			return "_";
 		}
 	}
 	//check the user input to see if it matches our word
-	// this.checkChar = function(userGuess){
-
-	// }
-
-}
+	this.checkCharacter = function(userGuess){
+		if(this.character === userGuess){
+			this.guessedCorrect = true;
+			return true
+		}else{
+			return false
+		}
+	}
+};
 
 
 module.exports = Letter;
