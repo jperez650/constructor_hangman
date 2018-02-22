@@ -22,9 +22,14 @@ function Word(currentWord){
 	}
 
 	this.guessingArgument = function(userGuess){
+		var correct = false
 		for(var i = 0; i < this.lettersArray.length; i++){
-			this.lettersArray[i].checkCharacter(userGuess);
+			var holder = this.lettersArray[i].checkCharacter(userGuess);
+			if(holder){
+				correct = true;
+			}
 		}
+		return correct;
 	}
 	this.beenGuessed = function(){
 		var wordGuessed = true;

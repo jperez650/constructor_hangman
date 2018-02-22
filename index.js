@@ -65,11 +65,26 @@ function startGame(){
 		var userGuess = answers.userInput[0].toLowerCase();
 	   // console.log(answers.userInput)
 		   if(chosenLetters.includes(userGuess)|| !userGuess){
-		   		return startGame()
-		   }else{
-		   		guessLeft --;
+			   	console.log(userGuess+" has already been guessed. Try a different one!")
+			   	return startGame()
 		   }
 		   chosenLetters.push(userGuess);
+		   var correctGuess = newWord.guessingArgument(userGuess)
+
+		   if(correctGuess){
+		   		if(newWord.beenGuessed()){
+		   			wins ++;
+		   			console.log("Congratulation! You Won!")
+		   			return;
+		   		}
+		   }
+		   else{
+		   		guessLeft --;
+		   		if(guessLeft === 0){
+		   			loss ++;
+		   			return;
+		   		}
+		   }
 		   newWord.guessingArgument(userGuess);
 		   startGame();
 		})
