@@ -1,13 +1,10 @@
 var Letter = require("./letter")
-//This creates an object representing the current word the user is attempting to guess. 
+
 function Word(currentWord){
-	// An array of new Letter objects representing the letters of the underlying word
+	
 	this.currentWord = currentWord;
 	this.lettersArray = [];
-	// This is used to create an object representing the current word the user is attempting to guess. 
 
-	// console.log(this.letters)
-	// 	A function that returns a string representing the word. This should call the function on each letter object (the first function defined in Letter.js) that displays the character or an underscore and concatenate those together.
 	this.toStringWord = function(){
 		var showWord = "";
 		for(var i = 0; i < this.lettersArray.length; i++){
@@ -23,23 +20,30 @@ function Word(currentWord){
 			this.lettersArray.push(letter)
 		}
 	}
-	// A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in Letter.js)
+
 	this.guessingArgument = function(userGuess){
 		for(var i = 0; i < this.lettersArray.length; i++){
 			this.lettersArray[i].checkCharacter(userGuess);
 		}
 	}
-	// 
+	this.beenGuessed = function(){
+		var wordGuessed = true;
+		for (var i = 0; i < this.lettersArray.length; i++){
+			if(!this.lettersArray[i].guessedCorrect){
+				wordGuessed = false;
+			}
+		}return wordGuessed;
+	}
 	
 }
 
-var word = new Word("chicken")
+// var newWord = new Word("chicken");
 
-word.letters()
+// newWord.letters()
 
-word.guessingArgument("c")
-// word.("a")
 
-console.log(word.toStringWord())
+// console.log("show this")
+// newWord.guessingArgument("c")
+// console.log(newWord.toStringWord())
 
-// module.exports = Word;
+module.exports = Word;
