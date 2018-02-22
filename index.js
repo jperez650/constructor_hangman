@@ -8,12 +8,20 @@ var loss = 0;
 
 var animalsArray = ["dog", "elephant", "ants", "iguana", "snake"];
 
-// function randomWord(){
 	var randomIndex = Math.floor(Math.random()*animalsArray.length)
 	var currentWord = animalsArray[randomIndex];
-	var newWord = new Word(currentWord);
+	var newWord = new Word(currentWord);	
 	newWord.letters()
 	newWord.toStringWord()
+
+function reset(){
+    correct = false
+    chosenLetters= []
+    guessLeft = 10;
+	newWord = new Word(currentWord);	
+    newWord.letters();
+    newWord.toStringWord();
+}
 
 function showStats(){
 	console.log("Wins: "+ wins);
@@ -75,14 +83,14 @@ function startGame(){
 		   		if(newWord.beenGuessed()){
 		   			wins ++;
 		   			console.log("Congratulation! You Won!")
-		   			return;
+		   			reset();
 		   		}
 		   }
 		   else{
 		   		guessLeft --;
 		   		if(guessLeft === 0){
 		   			loss ++;
-		   			return;
+		   			reset();
 		   		}
 		   }
 		   newWord.guessingArgument(userGuess);
